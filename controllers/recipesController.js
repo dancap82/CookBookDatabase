@@ -1,6 +1,6 @@
 const { pool } = require('../DB/dbConnection');
 
-// Get all recipes
+
 const getAllRecipes = (req, res) => {
   pool.query('SELECT * FROM recipes', (error, results) => {
     if (error) {
@@ -10,7 +10,7 @@ const getAllRecipes = (req, res) => {
   });
 };
 
-// Get one recipe by ID
+
 const getOneRecipe = (req, res) => {
   const { id } = req.params;
   pool.query('SELECT * FROM recipes WHERE id = $1', [id], (error, results) => {
@@ -24,7 +24,6 @@ const getOneRecipe = (req, res) => {
   });
 };
 
-// Create a new recipe
 const createOneRecipe = (req, res) => {
   const { name, description } = req.body;
   pool.query(
@@ -39,7 +38,7 @@ const createOneRecipe = (req, res) => {
   );
 };
 
-// Update an existing recipe by ID
+
 const updateOneRecipe = (req, res) => {
   const { id } = req.params;
   const { name, description } = req.body;
@@ -58,7 +57,7 @@ const updateOneRecipe = (req, res) => {
   );
 };
 
-// Delete a recipe by ID
+
 const deleteOneRecipe = (req, res) => {
   const { id } = req.params;
   pool.query('DELETE FROM recipes WHERE id = $1 RETURNING *', [id], (error, results) => {
