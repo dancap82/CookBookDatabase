@@ -40,8 +40,8 @@ const getOneRecipes = (req, res) => {
 
 
   const getOneIngredient = (req, res) => {
-    const { id } = req.params;
-    pool.query('SELECT * FROM ingredients WHERE id = $1', [id], (error, results) => {
+    const { ingredient_id } = req.params;
+    pool.query('SELECT * FROM ingredients WHERE ingredient_id = $1', [ingredient_id], (error, results) => {
       if (error) {
         throw error;
       }
