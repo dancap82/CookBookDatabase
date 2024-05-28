@@ -15,7 +15,7 @@ app.use(express.json());
 app.route('/recipes').get(getAllRecipes);
 app.route('/recipes/:id').get(getOneRecipes);
 app.route('/ingredients').get(getAllIngredients);
-app.route('/ingredients/:id').get(getOneIngredient);
+app.route('/ingredients/:ingredient_id').get(getOneIngredient);
 
 
 app.listen(PORT, () => console.log(`Server running in ${PORT}`));
