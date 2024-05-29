@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box ;
+}
+
+header {
+
+  background-color: rgb(165, 221, 155);
+
+}
+
+nav {
+  flex: auto;
+  justify-content: flex-start;
+  margin-left: 150px;
+  margin-right: 20px;
+  font-weight: bold;
+  color: rgb(48, 48, 48);
+  font-size:large;
+}
+
+.nav-list {
+  font-weight: bold;
+  color: rgb(48, 48, 48);
+  font-size:large;
+  margin: 30px;
+
+}
+
+.sign-list {
+  margin: 30px;
+
+}
+
+.hero {
+  background-image: url(./assets/herobackground.jpg);
+  height: 50vh;
+}
+
+.logo {
+  height: auto;
+  width: auto;
+  max-width: 120px;
+  max-height: 100px;
+  padding-left: 20px;
+}
+
+.body {
+
+  height: 500px;
+}
+
+.featured-recipes {
+  height: 500px;
+  background-color: rgb(197, 235, 170);
+}
+
+
+
