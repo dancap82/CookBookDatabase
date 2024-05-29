@@ -1,5 +1,5 @@
 
-const { pool } = require('../dbConnection');
+const { pool } = require('../DB/dbConnection');
 
 const getAllIngredients = (req, res) => {
   pool.query('SELECT * FROM ingredients', (error, results) => {
