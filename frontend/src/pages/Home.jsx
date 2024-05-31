@@ -1,24 +1,28 @@
 import { useEffect, useState } from 'react';
-import { createClient } from 'contentful';
+// import { useParams } from 'react-router-dom';
 
 
+// const client = createClient({
+//   space: 'whowk467f5k2',
+//   accessToken: '8MeD8B_7dHwAm4qkguDooYp-ImERKwk6LJGC13IN0qg'
+// });
 
-
-const client = createClient({
-  space: 'whowk467f5k2',
-  accessToken: '8MeD8B_7dHwAm4qkguDooYp-ImERKwk6LJGC13IN0qg'
-});
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
+  const [error, setError] = useState(null); 
 
-  useEffect(() => {
-    client.getEntries({ content_type: 'cookbook' })
-      .then((response) => {
-        console.log(response.items); // Check if data is fetched
-        setRecipes(response.items);
-      })
-      .catch((err) => console.error(err));
+  // or ('');
+
+
+useEffect(() => {
+  fetch(`http://localhost:3000/recipes`)
+  .then((response) => response.json())
+  .then((data) => {
+    setRecipes(data);
+    console.log(data);
+  })
+  .catch((error) => setError(error));
   }, []);
 
   return (
@@ -30,19 +34,17 @@ const Home = () => {
       </div>
       <div className="recipe-list grid gap-10 mb-8 sm:grid-cols-2 lg:grid-cols-2">
         {recipes.map(recipe => (
-          <div key={recipe.sys.id}>
+          <div key={recipe.id}>
             <div className=''>
-            <h3 className="my-1 h-8 text-xl">{recipe.fields.title}</h3>
-              {recipe.fields.recipeImage && recipe.fields.recipeImage.fields && (
-                <img src={recipe.fields.recipeImage.fields.file.url} alt={recipe.fields.title} />
-              )}
+            <h3 className="my-1 h-8 text-xl">{recipe.name}</h3>
+              <div class="flex justify-center items-center">
+              
+              <img className="size-[25rem] rounded-lg" src={recipe.url} alt={recipe.name} ></img>
+              </div>
             </div>
-            <div className=''>
-              {recipe.fields.recipeDetails}
+            <div className='px-9 py-2 text-center'>
+              {recipe.description}
             </div>
-            {/* <div className=''>
-              <p>{recipe.fields.ingredients}</p> */}
-            {/* </div> */}
           </div>
         ))}
       </div>
