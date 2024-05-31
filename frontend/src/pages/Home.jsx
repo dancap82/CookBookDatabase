@@ -1,24 +1,17 @@
 import { useEffect, useState } from 'react';
-import { createClient } from 'contentful';
-
-
-
-
-const client = createClient({
-  space: 'whowk467f5k2',
-  accessToken: '8MeD8B_7dHwAm4qkguDooYp-ImERKwk6LJGC13IN0qg'
-});
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    client.getEntries({ content_type: 'cookbook' })
-      .then((response) => {
-        console.log(response.items); // Check if data is fetched
-        setRecipes(response.items);
+    fetch('http://localhost:3000/recipes')
+      .then((response) => response.json())
+      .then((data) => {
+        setRecipes(data);
+        console.log(data); // Log the fetched data here
       })
-      .catch((err) => console.error(err));
+      .catch((error) => setError(error));
   }, []);
 
   return (
@@ -30,15 +23,15 @@ const Home = () => {
       </div>
       <div className="recipe-list grid gap-10 mb-8 sm:grid-cols-2 lg:grid-cols-2">
         {recipes.map(recipe => (
-          <div key={recipe.sys.id}>
+          <div key={recipe.id}>
             <div className=''>
-            <h3 className="my-1 h-8 text-xl">{recipe.fields.title}</h3>
-              {recipe.fields.recipeImage && recipe.fields.recipeImage.fields && (
-                <img src={recipe.fields.recipeImage.fields.file.url} alt={recipe.fields.title} />
+            <h3 className="my-1 h-8 text-xl">{recipe.name}</h3>
+              {recipe.url && recipe.url && (
+                <img src={recipe.url} alt={recipe.name} />
               )}
             </div>
             <div className=''>
-              {recipe.fields.recipeDetails}
+              {recipe.description}
             </div>
             {/* <div className=''>
               <p>{recipe.fields.ingredients}</p> */}
