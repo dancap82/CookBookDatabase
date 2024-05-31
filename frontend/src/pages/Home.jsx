@@ -17,17 +17,21 @@ const Home = () => {
   return (
     <>
       <div className="main-page-featured-section">
-          <div className="featured-recipes-title text-xl md:text-4xl font-bold my-6">
-            Featured Recipes
-          </div>
+        <div className="featured-recipes-title text-xl md:text-4xl font-bold my-6">
+          Featured Recipes
+        </div>
       </div>
       <div className="recipe-list grid gap-10 mb-8 sm:grid-cols-2 lg:grid-cols-2">
         {recipes.map(recipe => (
           <div key={recipe.id}>
             <div className=''>
-            <h3 className="my-1 h-8 text-xl">{recipe.name}</h3>
-              {recipe.url && recipe.url && (
-                <img src={recipe.url} alt={recipe.name} />
+              <h3 className="my-1 h-8 text-xl">{recipe.name}</h3>
+              {recipe.url && (
+                <img 
+                  src={recipe.url} 
+                  alt={recipe.name} 
+                  style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+                />
               )}
             </div>
             <div className=''>
@@ -43,9 +47,4 @@ const Home = () => {
   );
 };
 
-
-
-export default Home
-
-
-
+export default Home;

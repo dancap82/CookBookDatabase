@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -8,7 +7,7 @@ const RecipeListItems = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:3000/recipes')  
+    fetch('http://localhost:3000/recipes')
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -41,10 +40,16 @@ const RecipeListItems = () => {
           <h2 className="text-5xl font-bold mb-4">Recipe List</h2>
         </div>
         <div>
-          <ul className="grid grid-cols-1 gap-4">
+          <ul className="grid grid-cols-4 gap-4">
             {recipes.map(recipe => (
-              <li key={recipe.id} className="p-2 m-2 bg-gray-100 rounded-md">
-                <Link to={`/recipes/${recipe.id}`} className="block hover:bg-gray-100 p-2 rounded-md">
+              <li key={recipe.id} className="p-2 m-2 bg-gray-100 rounded-md flex flex-col items-center">
+                <Link to={`/recipes/${recipe.id}`} className="block p-2 rounded-md text-center flex flex-col items-center">
+                  <img 
+                    src={recipe.url} 
+                    alt={recipe.name} 
+                    className="mb-2" 
+                    style={{ width: '150px', height: '150px', objectFit: 'cover' }}
+                  />
                   <h3 className="text-lg font-semibold">{recipe.name}</h3>
                 </Link>
               </li>
@@ -57,4 +62,3 @@ const RecipeListItems = () => {
 };
 
 export default RecipeListItems;
-
