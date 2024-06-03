@@ -43,7 +43,7 @@ const RecipeListItems = () => {
           <ul className="grid grid-cols-4 gap-4">
             {recipes.map(recipe => (
               <li key={recipe.id} className="p-2 m-2 bg-gray-100 rounded-md flex flex-col items-center">
-                <Link to={`/recipes/${recipe.id}`} className="block p-2 rounded-md text-center flex flex-col items-center">
+                <Link to={`/recipes/${recipe.id}`} className="p-2 rounded-md text-center flex flex-col items-center">
                   <img 
                     src={recipe.url} 
                     alt={recipe.name} 
