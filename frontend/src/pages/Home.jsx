@@ -1,18 +1,10 @@
 import { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
-
-
-// const client = createClient({
-//   space: 'whowk467f5k2',
-//   accessToken: '8MeD8B_7dHwAm4qkguDooYp-ImERKwk6LJGC13IN0qg'
-// });
 
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState(null); 
 
-  // or ('');
 
 
 useEffect(() => {
